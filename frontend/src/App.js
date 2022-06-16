@@ -1,5 +1,7 @@
 import './App.css';
 import React from 'react'
+import GetDataButton from './components/GetDataButton';
+import GameList from './components/GameList';
 
 class App extends React.Component {
   constructor(props){
@@ -9,30 +11,23 @@ class App extends React.Component {
 
   handleGetRequest = async (e) => {
     e.preventDefault();
-    console.log(e)
-    const res = await fetch('/apiRequest');
-    console.log(res)
+
+    const res = await fetch('/games');
     const data = await res.json();
 
-    console.log(data)
+    await this.setState({
+      games0616: data[0].games0616
+    })
   }
 
-  
   render() {
     return (
       <div>
-        <button
-          onClick={this.handleGetRequest}
-        >
-          Get Data
-        </button>
+        <GetDataButton handleGetRequest={this.handleGetRequest} />
+        { this.state.games0616 && <GameList games0616={this.state.games0616} /> }
       </div>
     );
   }
 }
 
 export default App;
-
-
-
-// figure out why the promise isn't returning and why we can't get the data

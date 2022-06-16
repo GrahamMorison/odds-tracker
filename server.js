@@ -45,7 +45,6 @@ app.get('/apiRequest', async (req, res) => {
       return res.status(404).send()
     }
 
-    console.log(oddsData.data)
     res.send(oddsData.data)
   } catch (e) {
     res.status(500).send(e)
@@ -58,6 +57,17 @@ app.post('/users', async (req, res) => {
   try {
     await user.save()
     res.status(201).send(user)
+  } catch (e) {
+    res.status(400).send(e)
+  }
+})
+
+app.post('/games', async (req, res) => {
+  const game = new Game(req.body)
+
+  try {
+    await game.save()
+    res.status(201).send(game)
   } catch (e) {
     res.status(400).send(e)
   }
