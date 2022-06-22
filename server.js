@@ -26,6 +26,7 @@ app.get('/users', async (req, res) => {
   }
 })
 
+// Gets dummy data from our database to practice requests
 app.get('/games', async (req, res) => {
   try {
     const games = await Game.find({})

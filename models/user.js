@@ -15,6 +15,26 @@ const User = mongoose.model('User', {
     type: String,
     required: true,
     trim: true
+  },
+  balance: {
+    type: Number,
+    required: true,
+    default: 1000
+  },
+  emailAddress: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  password: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  betsMade: {
+    type: Array,
+    required: true,
+    default: []
   }
 })
 
